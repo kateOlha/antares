@@ -3847,13 +3847,24 @@ p,
 /* Шаблон 02 = Figma Capture Desktop_2 (27:3860): синие плоскости, без серого #303441 */
 .template-02 {
   --bg-plane: #15223c;
+  --bg-card: #0c1a33;
+  --border-color: #1e3358;
 }
 
 .template-02 .band,
-.template-02 .audiences-section {
+.template-02 .audiences-section,
+.template-02 .about-section,
+.template-02 .faq-section,
+.template-02 .process-section {
   background-color: var(--bg-plane);
   border-top-color: color-mix(in srgb, var(--accent) 35%, transparent);
   border-bottom-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.template-02 .works-section,
+.template-02 .services-section,
+.template-02 .contact-section {
+  background-color: var(--bg-main);
 }
 
 .template-02 .band-side li {
@@ -3862,20 +3873,25 @@ p,
 }
 
 .template-02 .hero-facts li {
-  background: color-mix(in srgb, var(--accent) 18%, var(--bg-main));
+  background: color-mix(in srgb, var(--accent) 18%, #0a1428);
   border-color: var(--border-color);
 }
 
 .template-02 .card,
 .template-02 .process-step,
 .template-02 .audience-grid .audience-card,
-.template-02 .faq-item {
+.template-02 .faq-item,
+.template-02 .faq-sides li {
   background: var(--bg-card);
   border-color: var(--border-color);
 }
 
 .template-02 .service-tile {
   background: var(--bg-card);
+}
+
+.template-02 .band-panel {
+  background: transparent;
 }
 
 /* Шаблон 03 = Figma Capture Desktop_1 (26:3014): светлые about / band / audiences */
@@ -4060,98 +4076,87 @@ p,
   }
 }
 
-/* Режим редактирования: палитра блока */
-[data-block] {
-  --block-local-bg: var(--block-bg, transparent);
-  --block-local-card: var(--block-card, var(--bg-card));
-  --block-local-border: var(--block-border, var(--border-color));
-  --block-local-heading: var(--block-heading, var(--text-heading));
-  --block-local-text: var(--block-text, var(--text-primary));
-  --block-local-muted: var(--block-muted, var(--text-secondary));
-  --block-local-accent: var(--block-accent, var(--accent));
-  --block-local-accent-hover: var(--block-accent-hover, var(--accent-hover));
-  color: var(--block-local-text);
+/* Палитра блока: только если переменная задана inline — иначе шаблоны не ломаем */
+[data-block][style*="--block-bg"] {
+  background-color: var(--block-bg) !important;
 }
 
-section.section[data-block],
-section.hero[data-block] {
-  background-color: var(--block-local-bg);
+[data-block][style*="--block-heading"] h1,
+[data-block][style*="--block-heading"] h2,
+[data-block][style*="--block-heading"] h3,
+[data-block][style*="--block-heading"] h4,
+[data-block][style*="--block-heading"] .step-title,
+[data-block][style*="--block-heading"] strong {
+  color: var(--block-heading);
 }
 
-section.band[data-block] {
-  background-color: var(--block-bg, var(--bg-plane));
+[data-block][style*="--block-text"] p,
+[data-block][style*="--block-text"] li,
+[data-block][style*="--block-text"] .lede,
+[data-block][style*="--block-text"] .hero-lead,
+[data-block][style*="--block-text"] .service-line small,
+[data-block][style*="--block-text"] .tile-label,
+[data-block][style*="--block-text"] .audience-points {
+  color: var(--block-text);
 }
 
-[data-block] h1,
-[data-block] h2,
-[data-block] h3,
-[data-block] h4,
-[data-block] .step-title,
-[data-block] strong {
-  color: var(--block-local-heading);
+[data-block][style*="--block-muted"] .hero-facts li,
+[data-block][style*="--block-muted"] .card p,
+[data-block][style*="--block-muted"] .process-step p,
+[data-block][style*="--block-muted"] .faq-item,
+[data-block][style*="--block-muted"] .audience-card p,
+[data-block][style*="--block-muted"] .band-side p,
+[data-block][style*="--block-muted"] .service-line small {
+  color: var(--block-muted);
 }
 
-[data-block] p,
-[data-block] li,
-[data-block] .lede,
-[data-block] .hero-lead,
-[data-block] .service-line small,
-[data-block] .tile-label,
-[data-block] .audience-points {
-  color: var(--block-local-text);
+[data-block][style*="--block-accent"] .eyebrow,
+[data-block][style*="--block-accent"] .kicker,
+[data-block][style*="--block-accent"] .chip,
+[data-block][style*="--block-accent"] .process-num,
+[data-block][style*="--block-accent"] .service-switch span:first-child,
+[data-block][style*="--block-accent"] .faq-sides span {
+  color: var(--block-accent);
 }
 
-[data-block] .eyebrow,
-[data-block] .kicker,
-[data-block] .chip,
-[data-block] .process-num,
-[data-block] .service-switch span:first-child,
-[data-block] .faq-sides span {
-  color: var(--block-local-accent);
+[data-block][style*="--block-card"] .card,
+[data-block][style*="--block-card"] .process-step,
+[data-block][style*="--block-card"] .faq-item,
+[data-block][style*="--block-card"] .audience-card,
+[data-block][style*="--block-card"] .hero-facts li,
+[data-block][style*="--block-card"] .service-tile,
+[data-block][style*="--block-card"] .faq-sides li {
+  background-color: var(--block-card);
 }
 
-[data-block] .hero-facts li,
-[data-block] .card p,
-[data-block] .process-step p,
-[data-block] .faq-item,
-[data-block] .audience-card p,
-[data-block] .band-side p,
-[data-block] .service-line small {
-  color: var(--block-local-muted);
+[data-block][style*="--block-border"] .card,
+[data-block][style*="--block-border"] .process-step,
+[data-block][style*="--block-border"] .faq-item,
+[data-block][style*="--block-border"] .audience-card,
+[data-block][style*="--block-border"] .hero-facts li,
+[data-block][style*="--block-border"] .service-tile,
+[data-block][style*="--block-border"] .faq-sides li {
+  border-color: var(--block-border);
 }
 
-[data-block] .hero-facts strong,
-[data-block] .card h3,
-[data-block] .audience-card h3,
-[data-block] .faq-sides strong,
-[data-block] .service-line strong,
-[data-block] .tile-label strong {
-  color: var(--block-local-heading);
+[data-block][style*="--block-accent"] .button {
+  background-color: var(--block-accent) !important;
 }
 
-[data-block] .card,
-[data-block] .process-step,
-[data-block] .faq-item,
-[data-block] .audience-card,
-[data-block] .hero-facts li,
-[data-block] .service-tile,
-[data-block] .faq-sides li {
-  background-color: var(--block-local-card);
-  border-color: var(--block-local-border);
+[data-block][style*="--block-accent-hover"] .button:hover {
+  background-color: var(--block-accent-hover) !important;
 }
 
-[data-block] .button {
-  background-color: var(--block-local-accent) !important;
-  color: var(--block-local-heading) !important;
+[data-block][style*="--block-heading"] .button {
+  color: var(--block-heading) !important;
 }
 
-[data-block] .button:hover {
-  background-color: var(--block-local-accent-hover) !important;
+[data-block][style*="--block-heading"] .hero-link {
+  color: var(--block-heading);
 }
 
-[data-block] .hero-link {
-  color: var(--block-local-heading);
-  border-color: var(--block-local-border);
+[data-block][style*="--block-border"] .hero-link {
+  border-color: var(--block-border);
 }
 
 html[data-edit-mode="on"] [data-block] {
