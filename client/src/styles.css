@@ -3844,27 +3844,16 @@ p,
   font-size: 0.95rem;
 }
 
-/* Шаблон 02 = Figma Capture Desktop_2 (27:3860): синие плоскости, без серого #303441 */
+/* Шаблон 02 = Figma Capture Desktop_2 (27:3860): синие плоскости только у band / audiences */
 .template-02 {
   --bg-plane: #15223c;
-  --bg-card: #0c1a33;
-  --border-color: #1e3358;
 }
 
 .template-02 .band,
-.template-02 .audiences-section,
-.template-02 .about-section,
-.template-02 .faq-section,
-.template-02 .process-section {
+.template-02 .audiences-section {
   background-color: var(--bg-plane);
   border-top-color: color-mix(in srgb, var(--accent) 35%, transparent);
   border-bottom-color: color-mix(in srgb, var(--accent) 35%, transparent);
-}
-
-.template-02 .works-section,
-.template-02 .services-section,
-.template-02 .contact-section {
-  background-color: var(--bg-main);
 }
 
 .template-02 .band-side li {
@@ -3873,25 +3862,20 @@ p,
 }
 
 .template-02 .hero-facts li {
-  background: color-mix(in srgb, var(--accent) 18%, #0a1428);
+  background: color-mix(in srgb, var(--accent) 18%, var(--bg-main));
   border-color: var(--border-color);
 }
 
 .template-02 .card,
 .template-02 .process-step,
 .template-02 .audience-grid .audience-card,
-.template-02 .faq-item,
-.template-02 .faq-sides li {
+.template-02 .faq-item {
   background: var(--bg-card);
   border-color: var(--border-color);
 }
 
 .template-02 .service-tile {
   background: var(--bg-card);
-}
-
-.template-02 .band-panel {
-  background: transparent;
 }
 
 /* Шаблон 03 = Figma Capture Desktop_1 (26:3014): светлые about / band / audiences */
