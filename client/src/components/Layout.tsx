@@ -1,7 +1,9 @@
+import { asset } from "../assets";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { BackdropToggle } from "./BackdropToggle";
 import { ContactFan } from "./ContactFan";
+import { TemplateSwitcher } from "./TemplateSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 
 const sections = [
@@ -48,7 +50,7 @@ export function Layout() {
     <>
       <header className={scrolled ? "header scrolled" : "header"}>
         <a className="logo-link" href="#top" aria-label="Антарес" onClick={closeMenu}>
-          <img src="/images/logo.png" alt="Антарес" />
+          <img src={asset("/images/logo.png")} alt="Антарес" />
         </a>
         <nav className={menuOpen ? "nav open" : "nav"} aria-label="Основное меню">
           <div className="nav-pill">
@@ -66,6 +68,7 @@ export function Layout() {
           <a className="button" href="#contact" onClick={closeMenu}>
             Связаться с нами
           </a>
+          <TemplateSwitcher />
           <BackdropToggle />
           <ThemeToggle />
         </nav>
@@ -99,7 +102,7 @@ export function Layout() {
       <footer className="footer">
         <div className="footer-inner">
           <div className="footer-brand">
-            <img src="/images/logo.png" alt="Антарес" />
+            <img src={asset("/images/logo.png")} alt="Антарес" />
             <p>Мастерская полного цикла с 2014 года. От задачи и конструкции до монтажа на площадке.</p>
             <a className="button" href="#contact">
               Связаться с нами

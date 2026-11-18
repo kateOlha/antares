@@ -90,15 +90,7 @@ body {
   color: var(--text-primary);
 }
 
-:root,
-html[data-backdrop="geometry"] {
-  --backdrop-url: url("/images/site-geometry.svg?v=wire4");
-  --backdrop-plane-url: url("/images/site-geometry-plane.svg?v=wire4");
-}
-
 html[data-backdrop="rings"] {
-  --backdrop-url: url("/images/site-rings.svg?v=4");
-  --backdrop-plane-url: url("/images/site-rings-plane.svg?v=4");
   --backdrop-size: min(140vw, 120rem);
   --backdrop-pos-x: right;
   overflow-x: clip;
@@ -340,8 +332,31 @@ textarea {
 }
 
 .backdrop-toggle button.on,
-.backdrop-toggle button[aria-pressed="true"] {
+.backdrop-toggle button[aria-pressed="true"],
+.backdrop-toggle a.on,
+.backdrop-toggle a[aria-current="page"] {
   background: var(--accent);
+  color: var(--text-heading);
+}
+
+.backdrop-toggle a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.backdrop-toggle a:hover {
   color: var(--text-heading);
 }
 
@@ -724,7 +739,7 @@ a.button.is-outline:hover {
 
 .hero-media {
   z-index: 0;
-  background: url("/images/hero.png") center 40% / cover no-repeat;
+  background: var(--hero-image) center 40% / cover no-repeat;
   filter: brightness(0.4) saturate(0.72);
 }
 

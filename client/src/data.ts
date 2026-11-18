@@ -1,16 +1,17 @@
+import { asset } from "./assets";
 export const advantages = [
   {
-    icon: "/images/adv-1.svg?v=2",
+    icon: asset("/images/adv-1.svg?v=2"),
     title: "Решаем задачу, а не просто делаем «красиво»",
     text: "Среди подрядчиков много производственных мастерских. Мы идём дальше: думаем, что объект должен сделать для события — создать впечатление, усилить бренд, попасть в сценарий, сработать в кадре. Если задачу можно упростить без потери эффекта — предложим. Если экономия приведёт к дешевому виду или срыву монтажа — скажем до производства, а не в день события.",
   },
   {
-    icon: "/images/adv-2.svg?v=2",
+    icon: asset("/images/adv-2.svg?v=2"),
     title: "Снимаем риски до того, как они станут проблемой",
     text: "Китай дешевле на старте, но не гибкий: правки по ходу, срочный монтаж, адаптация под площадку, ночные доработки — всё это мы. Мы проверяем конструкцию, продумываем крепления, тестируем сборку, упаковываем под логистику и стоим рядом на монтаже. Вы покупаете не объект, а уверенность, что он встанет и сработает.",
   },
   {
-    icon: "/images/adv-3.svg?v=2",
+    icon: asset("/images/adv-3.svg?v=2"),
     title: "Собственное производство — честная цена без наценок",
     text: "Не нанимаем субподрядчиков — работаем сами. Поэтому предлагаем максимально низкие цены по рынку: вы не переплачиваете посредникам. Более того, мы регулярно выступаем подрядчиками для других студий, которым их клиенты уже где-то переплатили.",
   },
@@ -19,28 +20,28 @@ export const advantages = [
 export const services = [
   {
     slug: "photozones",
-    image: "/images/product-photozones.png",
+    image: asset("/images/product-photozones.png"),
     title: "Фотозоны и\nwelcome-зоны",
     caption: "Event-агентства и бренды",
     text: "Собираем фотозоны и welcome-зоны, которые держат кадр и сценарий события. От эскиза и конструкции до финиша, упаковки и монтажа на площадке.",
   },
   {
     slug: "stands",
-    image: "/images/product-stands.png",
+    image: asset("/images/product-stands.png"),
     title: "Выставочные\nстенды",
     caption: "Конференции и выставки",
     text: "Делаем выставочные стенды под реальную площадку: габариты, крепления, сборка за монтажное окно и вид, который не разваливается в кадре.",
   },
   {
     slug: "props",
-    image: "/images/product-props.png",
+    image: asset("/images/product-props.png"),
     title: "Реквизит и\nбутафория",
     caption: "Продакшены и театры",
     text: "Бутафория и реквизит для съёмок, сцены и промо. Подбираем материал и технологию так, чтобы объект выглядел как задумано и пережил логистику.",
   },
   {
     slug: "branded",
-    image: "/images/product-branded.png",
+    image: asset("/images/product-branded.png"),
     title: "Брендированные\nконструкции",
     caption: "Арт-объекты, промо, pop-up",
     text: "Брендированные конструкции, арт-объекты и pop-up, которые усиливают бренд, а не просто занимают место. Если задачу можно решить проще без потери эффекта — скажем об этом до производства.",
@@ -49,32 +50,32 @@ export const services = [
 
 export const steps = [
   {
-    icon: "/images/step-1.svg?v=2",
+    icon: asset("/images/step-1.svg?v=2"),
     title: "Шаг 1: Разбираем задачу",
     text: "Начинаем не с «что сделать», а с «зачем». Что объект должен сделать для события? Какое впечатление создать? Как вписаться в бренд, сценарий, площадку, бюджет и монтажные ограничения?",
   },
   {
-    icon: "/images/step-2.svg?v=2",
+    icon: asset("/images/step-2.svg?v=2"),
     title: "Шаг 2: Показываем риски",
     text: "Честно говорим, что может пойти не так: не попасть в бренд, выглядеть дешево, не пройти по габаритам, не собраться за монтажное окно, быть небезопасным, выйти из бюджета.",
   },
   {
-    icon: "/images/step-3.svg?v=2",
+    icon: asset("/images/step-3.svg?v=2"),
     title: "Шаг 3: Предлагаем варианты",
     text: "Даём не одну цену, а три сценария: минимальный, оптимальный, роскошный максимум. Объясняем, за счёт чего можно снизить бюджет и какие последствия будут у каждого упрощения.",
   },
   {
-    icon: "/images/step-4.svg?v=2",
+    icon: asset("/images/step-4.svg?v=2"),
     title: "Шаг 4: Проектируем и производим",
     text: "Просчитываем конструкцию, подбираем материалы и технологии, продумываем финиш, крепления, подсветку. Делаем тестовую сборку, проверяем, упаковываем под логистику.",
   },
   {
-    icon: "/images/step-5.svg?v=2",
+    icon: asset("/images/step-5.svg?v=2"),
     title: "Шаг 5: Доставляем и монтируем",
     text: "Привозим, ставим на площадке, решаем вопросы с креплением, адаптируем под реальность, сдаём объект. Стоим рядом, пока всё не заработает как нужно.",
   },
   {
-    icon: "/images/step-6.svg?v=2",
+    icon: asset("/images/step-6.svg?v=2"),
     title: "Шаг 6: Сдаём результат",
     text: "Объект встал, сработал на задачу, не стал слабым местом события. Вы получили не головную боль, а работающий инструмент.",
   },
@@ -115,28 +116,28 @@ export const faq = [
 
 export const audiences = [
   {
-    image: "/images/audience-1.png",
+    image: asset("/images/audience-1.png"),
     label: "События",
     title: "Event-агентства и организаторы",
     text: "Объект должен попасть в сценарий, встать за монтажное окно и не стать слабым местом события. Считаем габариты и сборку до того, как начнётся производство.",
     points: ["Монтажное окно", "Сценарий события", "Первый кадр"],
   },
   {
-    image: "/images/product-branded.png",
+    image: asset("/images/product-branded.png"),
     label: "Съёмка",
     title: "Продакшены и рекламные студии",
     text: "Реквизит и декорации, которые в кадре выглядят как задумано и доезжают на площадку целыми. Материал выбираем под камеру, а не только под рендер.",
     points: ["Читаемый кадр", "Целая логистика", "Материал под задачу"],
   },
   {
-    image: "/images/audience-3.png",
+    image: asset("/images/audience-3.png"),
     label: "Ритейл",
     title: "Торговые центры и сети",
     text: "Оформление собирается на месте, держит поток людей и выглядит частью пространства. Повтор для сети не превращается в новую разработку с нуля.",
     points: ["Сборка на месте", "Поток людей", "Повтор для сети"],
   },
   {
-    image: "/images/audience-4.png",
+    image: asset("/images/audience-4.png"),
     label: "Сцена",
     title: "Театры и киностудии",
     text: "Декорации под габариты сцены и съёмки: понятная сборка, безопасность и объект, который читается в кадре, а не только на чертеже.",
@@ -147,7 +148,7 @@ export const audiences = [
 export const works = [
   {
     slug: "planets",
-    image: "/images/gallery-1.png",
+    image: asset("/images/gallery-1.png"),
     title: "Сфера и планеты",
     alt: "Объект на площадке",
     category: "Фотозона",
@@ -156,7 +157,7 @@ export const works = [
   },
   {
     slug: "shop",
-    image: "/images/gallery-2.png",
+    image: asset("/images/gallery-2.png"),
     title: "Интерьерная инсталляция",
     alt: "Интерьер магазина",
     category: "Брендирование",
@@ -165,7 +166,7 @@ export const works = [
   },
   {
     slug: "light",
-    image: "/images/gallery-3.png",
+    image: asset("/images/gallery-3.png"),
     title: "Световая инсталляция",
     alt: "Световая инсталляция",
     category: "Арт-объект",
@@ -174,7 +175,7 @@ export const works = [
   },
   {
     slug: "stand",
-    image: "/images/gallery-4.png",
+    image: asset("/images/gallery-4.png"),
     title: "Интерактивный стенд",
     alt: "Интерактивный стенд",
     category: "Выставка",
@@ -183,7 +184,7 @@ export const works = [
   },
   {
     slug: "scenery",
-    image: "/images/gallery-5.png",
+    image: asset("/images/gallery-5.png"),
     title: "Декорация в производстве",
     alt: "Декорация в процессе производства",
     category: "Производство",
@@ -192,7 +193,7 @@ export const works = [
   },
   {
     slug: "welcome",
-    image: "/images/product-photozones.png",
+    image: asset("/images/product-photozones.png"),
     title: "Welcome-зона",
     alt: "Фотозона и welcome-зона",
     category: "Фотозона",
@@ -201,7 +202,7 @@ export const works = [
   },
   {
     slug: "expo",
-    image: "/images/product-stands.png",
+    image: asset("/images/product-stands.png"),
     title: "Выставочный стенд",
     alt: "Выставочный стенд",
     category: "Выставка",
@@ -210,7 +211,7 @@ export const works = [
   },
   {
     slug: "props",
-    image: "/images/product-props.png",
+    image: asset("/images/product-props.png"),
     title: "Реквизит и бутафория",
     alt: "Реквизит и бутафория",
     category: "Реквизит",
@@ -219,7 +220,7 @@ export const works = [
   },
   {
     slug: "brand-object",
-    image: "/images/product-branded.png",
+    image: asset("/images/product-branded.png"),
     title: "Брендированная конструкция",
     alt: "Брендированная конструкция",
     category: "Бренд",
@@ -228,7 +229,7 @@ export const works = [
   },
   {
     slug: "event-floor",
-    image: "/images/audience-1.png",
+    image: asset("/images/audience-1.png"),
     title: "Площадка мероприятия",
     alt: "Площадка мероприятия",
     category: "Event",
@@ -237,7 +238,7 @@ export const works = [
   },
   {
     slug: "retail",
-    image: "/images/audience-3.png",
+    image: asset("/images/audience-3.png"),
     title: "Оформление торгового пространства",
     alt: "Торговое пространство",
     category: "Ритейл",
@@ -246,7 +247,7 @@ export const works = [
   },
   {
     slug: "stage",
-    image: "/images/audience-4.png",
+    image: asset("/images/audience-4.png"),
     title: "Сценическая декорация",
     alt: "Сценическая декорация",
     category: "Театр и кино",
