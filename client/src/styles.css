@@ -4054,65 +4054,8 @@ p,
   border-color: var(--border-color);
 }
 
-.client-switcher {
-  position: sticky;
-  top: 4.75rem;
-  z-index: 40;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.25rem;
-  padding: 0.65rem clamp(1rem, 4vw, 2.5rem);
-  background: color-mix(in srgb, var(--bg-main) 92%, transparent);
-  border-bottom: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
-}
-
-.client-switcher-all {
-  color: var(--text-heading);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.client-switcher ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.client-switcher a {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  text-decoration: none;
-  background: var(--bg-card);
-}
-
-.client-switcher a.on,
-.client-switcher a[aria-current="page"] {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--text-heading);
-}
-
-.client-switcher-meta {
-  margin: 0 0 0 auto;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
 @media (max-width: 720px) {
   .clients-grid {
     grid-template-columns: 1fr;
-  }
-
-  .client-switcher-meta {
-    margin-left: 0;
-    width: 100%;
   }
 }
