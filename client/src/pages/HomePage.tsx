@@ -53,7 +53,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
 
   return (
     <div className="page-parallax" ref={pageRef}>
-      <section className="hero" id="top">
+      <section className="hero" id="top" data-block="hero">
         <div className="hero-frame">
           <div className="hero-media" data-parallax="-0.28" aria-hidden="true" />
           <div className="hero-shade" aria-hidden="true" />
@@ -98,7 +98,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section works-section" id="works">
+      <section className="section works-section" id="works" data-block="works">
         <div className="section-head">
           <p className="kicker">Наши работы</p>
           <h2>Не просто финальные фото — показываем весь путь: от задачи до монтажа на площадке</h2>
@@ -107,7 +107,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         <MosaicSlider onOpen={setWorkSlug} />
       </section>
 
-      <section className="section about-section" id="about">
+      <section className="section about-section" id="about" data-block="about">
         <div className="about-layout">
         <div className="section-head">
           <p className="kicker">Почему мы?</p>
@@ -130,7 +130,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section services-section" id="services">
+      <section className="section services-section" id="services" data-block="services">
         <div className="services-stage">
           <div className="services-copy">
             <p className="kicker">Что мы делаем?</p>
@@ -187,7 +187,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </div>
       </section>
 
-      <section className="band">
+      <section className="band" id="band" data-block="band">
         <div className="band-orbit band-orbit-a" data-parallax="-0.18" aria-hidden="true" />
         <div className="band-orbit band-orbit-b" data-parallax="-0.1" aria-hidden="true" />
         <div className="band-panel" data-parallax="-0.05">
@@ -214,7 +214,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section process-section" id="process">
+      <section className="section process-section" id="process" data-block="process">
         <div className="section-head">
           <p className="kicker">Как мы работаем</p>
           <h2>
@@ -237,7 +237,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </ol>
       </section>
 
-      <section className="section faq-section" id="faq">
+      <section className="section faq-section" id="faq" data-block="faq">
         <div className="faq-layout">
           <div className="faq-copy">
             <p className="kicker">FAQ</p>
@@ -263,7 +263,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section audiences-section" id="audiences">
+      <section className="section audiences-section" id="audiences" data-block="audiences">
         <div className="section-head">
           <p className="kicker">Кому мы полезны</p>
           <h2>Работаем с теми, кому самим нужна наша работа, а не с посредниками</h2>
@@ -289,7 +289,7 @@ export function HomePage({ basePath = "/", pageTitle }: HomePageProps) {
         </div>
       </section>
 
-      <section className="section contact-section" id="contact">
+      <section className="section contact-section" id="contact" data-block="contact">
         <ContactForm />
       </section>
       {workSlug && (

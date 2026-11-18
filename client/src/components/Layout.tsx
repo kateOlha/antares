@@ -2,7 +2,9 @@ import { asset } from "../assets";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { BackdropToggle } from "./BackdropToggle";
+import { BlockColorEditor } from "./BlockColorEditor";
 import { ContactFan } from "./ContactFan";
+import { EditModeToggle } from "./EditModeToggle";
 import { TemplateSwitcher } from "./TemplateSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -70,6 +72,7 @@ export function Layout() {
           </a>
           <TemplateSwitcher />
           <BackdropToggle />
+          <EditModeToggle />
           <ThemeToggle />
         </nav>
         <button
@@ -87,6 +90,7 @@ export function Layout() {
       <main className="page">
         <Outlet />
       </main>
+      <BlockColorEditor />
       <div className="sticky-actions">
         <a className="presentation-chip" href="#contact">
           <svg viewBox="0 0 24 24" aria-hidden="true">
