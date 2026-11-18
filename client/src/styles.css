@@ -3974,34 +3974,35 @@ p,
 }
 
 .template-04 .about-section,
-.template-04 .band,
-.template-04 .audiences-section {
+.template-04 .band {
   background-color: var(--bg-plane);
   border-top-color: rgba(255, 255, 255, 0.08);
   border-bottom-color: rgba(255, 255, 255, 0.08);
   color: var(--text-primary);
 }
 
+/* audiences — обычный блок, без серой плоскости */
+.template-04 .audiences-section {
+  background-color: var(--bg-main);
+  border-top-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
 .template-04 .about-section .kicker,
-.template-04 .band .kicker,
-.template-04 .audiences-section .kicker {
+.template-04 .band .kicker {
   color: var(--accent);
 }
 
 .template-04 .about-section h2,
 .template-04 .about-section .lede,
 .template-04 .about-section .card h3,
-.template-04 .band h2,
-.template-04 .audiences-section h2,
-.template-04 .audiences-section .section-head h2,
-.template-04 .audience-card h3 {
+.template-04 .band h2 {
   color: var(--text-heading);
 }
 
 .template-04 .about-section .card p,
-.template-04 .band-side p,
-.template-04 .audience-card p,
-.template-04 .audience-points {
+.template-04 .band-side p {
   color: var(--text-primary);
 }
 
@@ -4027,15 +4028,6 @@ p,
 .template-04 .band .button:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-}
-
-.template-04 .audience-grid .audience-card {
-  background: var(--bg-card);
-  border-color: var(--border-color);
-}
-
-.template-04 .audience-card .chip {
-  color: var(--accent);
 }
 
 .template-04 .band-orbit {
