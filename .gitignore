@@ -1,0 +1,10 @@
+node_modules
+dist
+.figma-cache
+.cursor
+.env
+.env.*
+server/data/leads.json
+*.log
+*.png
+!client/public/**/*.png
