@@ -3991,7 +3991,7 @@ p,
 
 .template-04 .about-section .kicker,
 .template-04 .band .kicker {
-  color: var(--accent);
+  color: var(--text-primary);
 }
 
 .template-04 .about-section h2,
