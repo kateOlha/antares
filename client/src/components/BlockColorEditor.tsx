@@ -5,21 +5,23 @@ import {
   BLOCK_COLOR_FIELDS,
   BLOCK_LABELS,
   COLOR_PRESETS,
-  copyThemeScheme,
   defaultDraft,
-  downloadThemeScheme,
   draftForBlock,
   getBlockColors,
   getScopeKey,
   getStoredEditMode,
-  importThemeScheme,
   resetBlockColors,
-  themeSchemeToJson,
   updateBlockColors,
   type BlockColorKey,
   type BlockColorSet,
   type BlockId,
 } from "../blockColors";
+import {
+  copyThemeScheme,
+  downloadThemeScheme,
+  importThemeScheme,
+  themeSchemeToJson,
+} from "../themeScheme";
 
 function toColorInput(value: string | undefined, fallback: string): string {
   const raw = (value || fallback).trim();
@@ -63,7 +65,15 @@ export function BlockColorEditor() {
     function onClick(event: MouseEvent) {
       const target = event.target as HTMLElement | null;
       if (!target) return;
-      if (target.closest(".block-color-panel") || target.closest(".header") || target.closest(".sticky-actions")) {
+      if (document.documentElement.dataset.commentTool === "place") return;
+      if (
+        target.closest(".block-color-panel") ||
+        target.closest(".header") ||
+        target.closest(".sticky-actions") ||
+        target.closest(".page-comment-pin") ||
+        target.closest(".page-comment-card") ||
+        target.closest(".page-comments-toolbar")
+      ) {
         return;
       }
       const block = target.closest<HTMLElement>("[data-block]");
@@ -120,7 +130,8 @@ export function BlockColorEditor() {
       if (selected) setDraft(draftForBlock(selected));
       setPasteOpen(false);
       setPasteText("");
-      flash(`Импорт: ${Object.keys(scheme.blocks).length} блоков`);
+      const commentsCount = scheme.comments?.length ?? 0;
+      flash(`Импорт: ${Object.keys(scheme.blocks).length} блоков, ${commentsCount} комм.`);
     } catch (error) {
       flash(error instanceof Error ? error.message : "Ошибка импорта");
     }
@@ -288,6 +299,7 @@ export function BlockColorEditor() {
 
       <div className="block-color-group block-color-scheme">
         <p className="block-color-group-title">Схема · {getScopeKey()}</p>
+        <p className="block-color-hint">В JSON уходят цвета блоков и комментарии с страницы.</p>
         <div className="block-color-actions">
           <button type="button" onClick={() => void onCopy()}>
             Копировать JSON

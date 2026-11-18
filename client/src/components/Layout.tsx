@@ -5,6 +5,7 @@ import { BackdropToggle } from "./BackdropToggle";
 import { BlockColorEditor } from "./BlockColorEditor";
 import { ContactFan } from "./ContactFan";
 import { EditModeToggle } from "./EditModeToggle";
+import { PageCommentsOverlay } from "./PageCommentsOverlay";
 import { TemplateSwitcher } from "./TemplateSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -91,6 +92,7 @@ export function Layout() {
         <Outlet />
       </main>
       <BlockColorEditor />
+      <PageCommentsOverlay />
       <div className="sticky-actions">
         <a className="presentation-chip" href="#contact">
           <svg viewBox="0 0 24 24" aria-hidden="true">

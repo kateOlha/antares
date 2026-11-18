@@ -4391,3 +4391,175 @@ html[data-edit-mode="on"] [data-block].is-editing {
   font-size: 0.82rem;
   font-weight: 600;
 }
+
+.page-comments-toolbar {
+  position: fixed;
+  top: 5.5rem;
+  left: 50%;
+  z-index: 46;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-card) 92%, transparent);
+  transform: translateX(-50%);
+}
+
+.page-comments-toolbar button {
+  min-height: 2.25rem;
+  margin: 0;
+  padding: 0 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page-comments-toolbar button.on,
+.page-comments-toolbar button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--text-heading);
+}
+
+.page-comments-count {
+  min-width: 1.75rem;
+  padding: 0 0.45rem;
+  color: var(--text-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.page-comments-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 35;
+  width: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+}
+
+.page-comments-layer.is-placing {
+  cursor: crosshair;
+}
+
+.page-comment-pin {
+  position: absolute;
+  z-index: 36;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  margin: 0;
+  border: 2px solid var(--text-heading);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--text-heading);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(5, 8, 20, 0.35);
+}
+
+.page-comment-pin.on {
+  outline: 2px solid var(--text-heading);
+  outline-offset: 2px;
+}
+
+.page-comment-card {
+  position: fixed;
+  right: max(1rem, var(--gutter));
+  bottom: 1.75rem;
+  z-index: 47;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 0.95rem 1rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+  box-shadow: 0 12px 40px rgba(5, 8, 20, 0.45);
+  color: var(--text-primary);
+}
+
+.page-comment-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.page-comment-card-head strong {
+  color: var(--text-heading);
+}
+
+.page-comment-card-head button {
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.page-comment-card textarea,
+.page-comment-text {
+  width: 100%;
+  margin: 0;
+  padding: 0.65rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-main);
+  color: var(--text-heading);
+  font: inherit;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.page-comment-text {
+  min-height: 4.5rem;
+  white-space: pre-wrap;
+}
+
+.page-comment-card-actions {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+.page-comment-card-actions button {
+  min-height: 2.25rem;
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.page-comment-card-actions button:hover {
+  color: var(--text-heading);
+  border-color: var(--accent);
+}
+
+html[data-comment-tool="place"] {
+  cursor: crosshair;
+}
