@@ -9,11 +9,17 @@ export type BlockId =
   | "audiences"
   | "contact";
 
-export type BlockColorSet = {
-  bg?: string;
-  card?: string;
-  accent?: string;
-};
+export type BlockColorKey =
+  | "bg"
+  | "card"
+  | "accent"
+  | "accentHover"
+  | "heading"
+  | "text"
+  | "muted"
+  | "border";
+
+export type BlockColorSet = Partial<Record<BlockColorKey, string>>;
 
 export type BlockColorMap = Partial<Record<BlockId, BlockColorSet>>;
 
@@ -31,7 +37,23 @@ export const BLOCK_LABELS: Record<BlockId, string> = {
 
 export const BLOCK_IDS = Object.keys(BLOCK_LABELS) as BlockId[];
 
-/** Быстрые пресеты из палитры Антарес + пара вариантов для правок. */
+export const BLOCK_COLOR_FIELDS: {
+  key: BlockColorKey;
+  label: string;
+  css: string;
+  fallback: string;
+}[] = [
+  { key: "bg", label: "Фон", css: "--block-bg", fallback: "#0C1224" },
+  { key: "card", label: "Карточки", css: "--block-card", fallback: "#0C1224" },
+  { key: "border", label: "Граница", css: "--block-border", fallback: "#1A2744" },
+  { key: "heading", label: "Заголовок", css: "--block-heading", fallback: "#E8ECF5" },
+  { key: "text", label: "Текст", css: "--block-text", fallback: "#C5CAD8" },
+  { key: "muted", label: "Вторичный", css: "--block-muted", fallback: "#8B93A8" },
+  { key: "accent", label: "Акцент", css: "--block-accent", fallback: "#0039C7" },
+  { key: "accentHover", label: "Акцент hover", css: "--block-accent-hover", fallback: "#002FA6" },
+];
+
+/** Быстрые пресеты из палитры Антарес. */
 export const COLOR_PRESETS = [
   "#050814",
   "#0C1224",
@@ -85,10 +107,9 @@ export function updateBlockColors(id: BlockId, patch: BlockColorSet) {
     ...current,
     [id]: { ...current[id], ...patch },
   };
-  // drop empty keys
   const entry = next[id];
   if (entry) {
-    (Object.keys(entry) as (keyof BlockColorSet)[]).forEach((key) => {
+    (Object.keys(entry) as BlockColorKey[]).forEach((key) => {
       if (!entry[key]) delete entry[key];
     });
     if (Object.keys(entry).length === 0) delete next[id];
@@ -106,17 +127,32 @@ export function resetBlockColors(id?: BlockId) {
   setBlockColors(current);
 }
 
+export function defaultDraft(): BlockColorSet {
+  return Object.fromEntries(BLOCK_COLOR_FIELDS.map((field) => [field.key, field.fallback])) as BlockColorSet;
+}
+
+export function draftForBlock(id: BlockId): BlockColorSet {
+  const saved = getBlockColors()[id] ?? {};
+  const node = document.querySelector<HTMLElement>(`[data-block="${id}"]`);
+  const draft: BlockColorSet = {};
+  BLOCK_COLOR_FIELDS.forEach((field) => {
+    const fromSaved = saved[field.key];
+    const fromCss = node?.style.getPropertyValue(field.css).trim();
+    draft[field.key] = fromSaved || fromCss || field.fallback;
+  });
+  return draft;
+}
+
 export function applyBlockColors(map: BlockColorMap = getBlockColors()) {
   BLOCK_IDS.forEach((id) => {
     const node = document.querySelector<HTMLElement>(`[data-block="${id}"]`);
     if (!node) return;
     const colors = map[id];
-    if (colors?.bg) node.style.setProperty("--block-bg", colors.bg);
-    else node.style.removeProperty("--block-bg");
-    if (colors?.card) node.style.setProperty("--block-card", colors.card);
-    else node.style.removeProperty("--block-card");
-    if (colors?.accent) node.style.setProperty("--block-accent", colors.accent);
-    else node.style.removeProperty("--block-accent");
+    BLOCK_COLOR_FIELDS.forEach((field) => {
+      const value = colors?.[field.key];
+      if (value) node.style.setProperty(field.css, value);
+      else node.style.removeProperty(field.css);
+    });
   });
 }
 

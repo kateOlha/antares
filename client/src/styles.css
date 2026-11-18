@@ -4060,23 +4060,73 @@ p,
   }
 }
 
-/* Режим редактирования цветов блоков */
+/* Режим редактирования: палитра блока */
 [data-block] {
+  --block-local-bg: var(--block-bg, transparent);
+  --block-local-card: var(--block-card, var(--bg-card));
+  --block-local-border: var(--block-border, var(--border-color));
+  --block-local-heading: var(--block-heading, var(--text-heading));
+  --block-local-text: var(--block-text, var(--text-primary));
+  --block-local-muted: var(--block-muted, var(--text-secondary));
   --block-local-accent: var(--block-accent, var(--accent));
+  --block-local-accent-hover: var(--block-accent-hover, var(--accent-hover));
+  color: var(--block-local-text);
 }
 
 section.section[data-block],
-section.hero[data-block],
-section.band[data-block] {
-  background-color: var(--block-bg, transparent);
-}
-
 section.hero[data-block] {
-  background-color: var(--block-bg, transparent);
+  background-color: var(--block-local-bg);
 }
 
 section.band[data-block] {
   background-color: var(--block-bg, var(--bg-plane));
+}
+
+[data-block] h1,
+[data-block] h2,
+[data-block] h3,
+[data-block] h4,
+[data-block] .step-title,
+[data-block] strong {
+  color: var(--block-local-heading);
+}
+
+[data-block] p,
+[data-block] li,
+[data-block] .lede,
+[data-block] .hero-lead,
+[data-block] .service-line small,
+[data-block] .tile-label,
+[data-block] .audience-points {
+  color: var(--block-local-text);
+}
+
+[data-block] .eyebrow,
+[data-block] .kicker,
+[data-block] .chip,
+[data-block] .process-num,
+[data-block] .service-switch span:first-child,
+[data-block] .faq-sides span {
+  color: var(--block-local-accent);
+}
+
+[data-block] .hero-facts li,
+[data-block] .card p,
+[data-block] .process-step p,
+[data-block] .faq-item,
+[data-block] .audience-card p,
+[data-block] .band-side p,
+[data-block] .service-line small {
+  color: var(--block-local-muted);
+}
+
+[data-block] .hero-facts strong,
+[data-block] .card h3,
+[data-block] .audience-card h3,
+[data-block] .faq-sides strong,
+[data-block] .service-line strong,
+[data-block] .tile-label strong {
+  color: var(--block-local-heading);
 }
 
 [data-block] .card,
@@ -4084,17 +4134,24 @@ section.band[data-block] {
 [data-block] .faq-item,
 [data-block] .audience-card,
 [data-block] .hero-facts li,
-[data-block] .service-tile {
-  background-color: var(--block-card, var(--bg-card));
-}
-
-[data-block] .kicker,
-[data-block] .chip {
-  color: var(--block-local-accent);
+[data-block] .service-tile,
+[data-block] .faq-sides li {
+  background-color: var(--block-local-card);
+  border-color: var(--block-local-border);
 }
 
 [data-block] .button {
   background-color: var(--block-local-accent) !important;
+  color: var(--block-local-heading) !important;
+}
+
+[data-block] .button:hover {
+  background-color: var(--block-local-accent-hover) !important;
+}
+
+[data-block] .hero-link {
+  color: var(--block-local-heading);
+  border-color: var(--block-local-border);
 }
 
 html[data-edit-mode="on"] [data-block] {
@@ -4137,13 +4194,51 @@ html[data-edit-mode="on"] [data-block].is-editing {
   left: max(1rem, var(--gutter));
   bottom: 1.75rem;
   z-index: 45;
-  width: min(22rem, calc(100vw - 2rem));
+  width: min(24rem, calc(100vw - 2rem));
+  max-height: min(78vh, 40rem);
+  overflow: auto;
   padding: 1rem 1.1rem 1.1rem;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   background: color-mix(in srgb, var(--bg-card) 94%, transparent);
   box-shadow: 0 12px 40px rgba(5, 8, 20, 0.45);
   color: var(--text-primary);
+}
+
+.block-color-group {
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.block-color-group-title {
+  margin: 0 0 0.45rem;
+  color: var(--text-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.block-color-preset-target {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0 0.55rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.block-color-preset-target select {
+  flex: 1;
+  min-height: 2rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-main);
+  color: var(--text-heading);
+  font: inherit;
+  font-size: 0.85rem;
 }
 
 .block-color-panel-head {

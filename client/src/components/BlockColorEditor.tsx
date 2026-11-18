@@ -2,21 +2,27 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
   applyBlockColors,
+  BLOCK_COLOR_FIELDS,
   BLOCK_LABELS,
   COLOR_PRESETS,
+  defaultDraft,
+  draftForBlock,
   getBlockColors,
   getStoredEditMode,
   resetBlockColors,
   updateBlockColors,
+  type BlockColorKey,
   type BlockColorSet,
   type BlockId,
 } from "../blockColors";
 
-function readComputed(id: BlockId, key: "--block-bg" | "--block-card" | "--block-accent", fallback: string) {
-  const node = document.querySelector<HTMLElement>(`[data-block="${id}"]`);
-  if (!node) return fallback;
-  const value = getComputedStyle(node).getPropertyValue(key).trim();
-  return value || fallback;
+function toColorInput(value: string | undefined, fallback: string): string {
+  const raw = (value || fallback).trim();
+  if (/^#[0-9a-fA-F]{6}$/.test(raw)) return raw;
+  if (/^#[0-9a-fA-F]{3}$/.test(raw)) {
+    return `#${raw[1]}${raw[1]}${raw[2]}${raw[2]}${raw[3]}${raw[3]}`;
+  }
+  return fallback;
 }
 
 export function BlockColorEditor() {
@@ -24,6 +30,7 @@ export function BlockColorEditor() {
   const [editOn, setEditOn] = useState(false);
   const [selected, setSelected] = useState<BlockId | null>(null);
   const [draft, setDraft] = useState<BlockColorSet>({});
+  const [presetTarget, setPresetTarget] = useState<BlockColorKey>("bg");
 
   useEffect(() => {
     setEditOn(getStoredEditMode());
@@ -61,12 +68,7 @@ export function BlockColorEditor() {
       });
       block.classList.add("is-editing");
       block.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      const saved = getBlockColors()[id] ?? {};
-      setDraft({
-        bg: saved.bg || readComputed(id, "--block-bg", "#0C1224"),
-        card: saved.card || readComputed(id, "--block-card", "#0C1224"),
-        accent: saved.accent || readComputed(id, "--block-accent", "#0039C7"),
-      });
+      setDraft(draftForBlock(id));
       setSelected(id);
     }
 
@@ -82,58 +84,89 @@ export function BlockColorEditor() {
   }
 
   return (
-    <aside className="block-color-panel" aria-label="Цвета блока">
+    <aside className="block-color-panel" aria-label="Палитра блока">
       <div className="block-color-panel-head">
-        <strong>{BLOCK_LABELS[selected]}</strong>
+        <strong>Палитра · {BLOCK_LABELS[selected]}</strong>
         <button type="button" onClick={() => setSelected(null)} aria-label="Закрыть">
           ×
         </button>
       </div>
-      <p className="block-color-hint">Клик по блоку на странице — выбор. Цвета сохраняются для текущего шаблона.</p>
+      <p className="block-color-hint">
+        Полная палитра блока: фон, текст и акцент. Пресет красится в выбранное поле ниже.
+      </p>
 
-      <label className="block-color-field">
-        <span>Фон блока</span>
-        <input
-          type="color"
-          value={draft.bg || "#0C1224"}
-          onChange={(event) => patch({ bg: event.target.value })}
-        />
-        <input
-          type="text"
-          value={draft.bg || ""}
-          onChange={(event) => patch({ bg: event.target.value })}
-          spellCheck={false}
-        />
-      </label>
+      <div className="block-color-group">
+        <p className="block-color-group-title">Поверхности</p>
+        {BLOCK_COLOR_FIELDS.filter((field) => ["bg", "card", "border"].includes(field.key)).map((field) => (
+          <label className="block-color-field" key={field.key}>
+            <span>{field.label}</span>
+            <input
+              type="color"
+              value={toColorInput(draft[field.key], field.fallback)}
+              onChange={(event) => patch({ [field.key]: event.target.value })}
+            />
+            <input
+              type="text"
+              value={draft[field.key] || ""}
+              onChange={(event) => patch({ [field.key]: event.target.value })}
+              spellCheck={false}
+            />
+          </label>
+        ))}
+      </div>
 
-      <label className="block-color-field">
-        <span>Карточки</span>
-        <input
-          type="color"
-          value={draft.card || "#0C1224"}
-          onChange={(event) => patch({ card: event.target.value })}
-        />
-        <input
-          type="text"
-          value={draft.card || ""}
-          onChange={(event) => patch({ card: event.target.value })}
-          spellCheck={false}
-        />
-      </label>
+      <div className="block-color-group">
+        <p className="block-color-group-title">Текст</p>
+        {BLOCK_COLOR_FIELDS.filter((field) => ["heading", "text", "muted"].includes(field.key)).map((field) => (
+          <label className="block-color-field" key={field.key}>
+            <span>{field.label}</span>
+            <input
+              type="color"
+              value={toColorInput(draft[field.key], field.fallback)}
+              onChange={(event) => patch({ [field.key]: event.target.value })}
+            />
+            <input
+              type="text"
+              value={draft[field.key] || ""}
+              onChange={(event) => patch({ [field.key]: event.target.value })}
+              spellCheck={false}
+            />
+          </label>
+        ))}
+      </div>
 
-      <label className="block-color-field">
-        <span>Акцент</span>
-        <input
-          type="color"
-          value={draft.accent || "#0039C7"}
-          onChange={(event) => patch({ accent: event.target.value })}
-        />
-        <input
-          type="text"
-          value={draft.accent || ""}
-          onChange={(event) => patch({ accent: event.target.value })}
-          spellCheck={false}
-        />
+      <div className="block-color-group">
+        <p className="block-color-group-title">Акцент</p>
+        {BLOCK_COLOR_FIELDS.filter((field) => ["accent", "accentHover"].includes(field.key)).map((field) => (
+          <label className="block-color-field" key={field.key}>
+            <span>{field.label}</span>
+            <input
+              type="color"
+              value={toColorInput(draft[field.key], field.fallback)}
+              onChange={(event) => patch({ [field.key]: event.target.value })}
+            />
+            <input
+              type="text"
+              value={draft[field.key] || ""}
+              onChange={(event) => patch({ [field.key]: event.target.value })}
+              spellCheck={false}
+            />
+          </label>
+        ))}
+      </div>
+
+      <label className="block-color-preset-target">
+        <span>Пресет →</span>
+        <select
+          value={presetTarget}
+          onChange={(event) => setPresetTarget(event.target.value as BlockColorKey)}
+        >
+          {BLOCK_COLOR_FIELDS.map((field) => (
+            <option key={field.key} value={field.key}>
+              {field.label}
+            </option>
+          ))}
+        </select>
       </label>
 
       <div className="block-color-presets" role="group" aria-label="Пресеты">
@@ -142,9 +175,9 @@ export function BlockColorEditor() {
             key={color}
             type="button"
             style={{ background: color }}
-            title={color}
+            title={`${presetTarget}: ${color}`}
             aria-label={color}
-            onClick={() => patch({ bg: color })}
+            onClick={() => patch({ [presetTarget]: color })}
           />
         ))}
       </div>
@@ -154,11 +187,7 @@ export function BlockColorEditor() {
           type="button"
           onClick={() => {
             resetBlockColors(selected);
-            setDraft({
-              bg: readComputed(selected, "--block-bg", "#0C1224"),
-              card: readComputed(selected, "--block-card", "#0C1224"),
-              accent: readComputed(selected, "--block-accent", "#0039C7"),
-            });
+            setDraft(draftForBlock(selected));
           }}
         >
           Сбросить блок
@@ -167,11 +196,7 @@ export function BlockColorEditor() {
           type="button"
           onClick={() => {
             resetBlockColors();
-            setDraft({
-              bg: "#0C1224",
-              card: "#0C1224",
-              accent: "#0039C7",
-            });
+            setDraft(defaultDraft());
           }}
         >
           Сбросить все
